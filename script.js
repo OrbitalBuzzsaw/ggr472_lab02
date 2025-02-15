@@ -14,7 +14,7 @@ map.on('load', function () {
     // Add layer
     map.addSource('layer1', {
         type: 'geojson',
-        data: 'data/mbta_stations.geojson'
+        data: 'mbta_stations.geojson'
     });
 
     map.addLayer({
@@ -30,7 +30,7 @@ map.on('load', function () {
     // Add second layer
     map.addSource('layer2', {
         type: 'geojson',
-        data: 'data/mbta_lines.geojson'
+        data: 'mbta_lines.geojson'
     });
 
     map.addLayer({
