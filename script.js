@@ -14,7 +14,7 @@ map.on('load', function () {
     // Add layer
     map.addSource('layer1', {
         type: 'geojson',
-        data: 'mbta_stations.geojson'
+        data: 'https://github.com/OrbitalBuzzsaw/ggr472_lab02/blob/main/mbta_stations.json'
     });
 
     map.addLayer({
@@ -30,7 +30,7 @@ map.on('load', function () {
     // Add second layer
     map.addSource('layer2', {
         type: 'geojson',
-        data: 'mbta_lines.geojson'
+        data: 'https://github.com/OrbitalBuzzsaw/ggr472_lab02/blob/main/mbta_lines.json'
     });
 
     map.addLayer({
