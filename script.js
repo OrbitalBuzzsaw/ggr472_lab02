@@ -10,36 +10,60 @@ const map = new mapboxgl.Map({
 // zoom and rotation controls
 map.addControl(new mapboxgl.NavigationControl());
 
+mapboxgl.accessToken = 'pk.eyJ1IjoiYW9jaHJpc3Rlc2VuIiwiYSI6ImNtNzVzM3ozNzAxMzMycnB1Ymswd3pxdmgifQ.OXmeKBE7RZ3VT88AiV93Nw';
+
+const map = new mapboxgl.Map({
+    container: 'map', // HTML container ID
+    style: 'mapbox://styles/aochristesen/cm75sbdga00i401quarbffk7t', // Your Mapbox Style URL
+    center: [-100, 40], // [longitude, latitude]
+    zoom: 4
+});
+
 map.on('load', function () {
-    // Add layer
-    map.addSource('layer1', {
-        type: 'geojson',
-        data: 'https://github.com/OrbitalBuzzsaw/ggr472_lab02/blob/main/mbta_stations.json'
-    });
+    console.log("✅ Map has loaded successfully!");
 
-    map.addLayer({
-        id: 'layer1',
-        type: 'fill',
-        source: 'layer1',
-        paint: {
-            'fill-color': '#ff0000',
-            'fill-opacity': 0.5
-        }
-    });
+    // Load Layer 1
+    fetch('https://github.com/OrbitalBuzzsaw/ggr472_lab02/blob/main/mbta_stations.json')
+        .then(response => response.json())
+        .then(data => {
+            console.log("✅ Layer1 Loaded:", data);
 
-    // Add second layer
-    map.addSource('layer2', {
-        type: 'geojson',
-        data: 'https://github.com/OrbitalBuzzsaw/ggr472_lab02/blob/main/mbta_lines.json'
-    });
+            map.addSource('layer1', { type: 'geojson', data: data });
 
-    map.addLayer({
-        id: 'layer2',
-        type: 'circle',
-        source: 'layer2',
-        paint: {
-            'circle-radius': 6,
-            'circle-color': '#0000ff'
-        }
-    });
+            map.addLayer({
+                id: 'layer1',
+                type: 'circle', // Correct type for point data
+                source: 'layer1',
+                paint: {
+                    'circle-radius': 6,
+                    'circle-color': '#ff0000',
+                    'circle-opacity': 0.8
+                }
+            });
+
+            console.log("✅ Layer1 (Points) added to the map!");
+        })
+        .catch(error => console.error('❌ Error loading Layer1.geojson:', error));
+
+    // Load Layer 2 
+    fetch('https://github.com/OrbitalBuzzsaw/ggr472_lab02/blob/main/mbta_lines.json')
+        .then(response => response.json())
+        .then(data => {
+            console.log("✅ Layer2 Loaded:", data);
+
+            map.addSource('layer2', { type: 'geojson', data: data });
+
+            map.addLayer({
+                id: 'layer2',
+                type: 'line', // Correct type for polyline data
+                source: 'layer2',
+                paint: {
+                    'line-width': 3,
+                    'line-color': '#0000ff'
+                }
+            });
+
+            console.log("✅ Layer2 (Polylines) added to the map!");
+        })
+        .catch(error => console.error('❌ Error loading Layer2.geojson:', error));
 });
