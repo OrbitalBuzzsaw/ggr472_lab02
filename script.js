@@ -23,7 +23,7 @@ map.on('load', function () {
     console.log("✅ Map has loaded successfully!");
 
     // Load Layer 1
-    fetch('https://github.com/OrbitalBuzzsaw/ggr472_lab02/blob/main/mbta_stations.json')
+    fetch('https://github.com/OrbitalBuzzsaw/ggr472_lab02/blob/main/mbta_stations.json?nocache=' + Date.now())
         .then(response => response.json())
         .then(data => {
             console.log("✅ Layer1 Loaded:", data);
@@ -46,7 +46,7 @@ map.on('load', function () {
         .catch(error => console.error('❌ Error loading Layer1.geojson:', error));
 
     // Load Layer 2 
-    fetch('https://github.com/OrbitalBuzzsaw/ggr472_lab02/blob/main/mbta_lines.json')
+    fetch('https://github.com/OrbitalBuzzsaw/ggr472_lab02/blob/main/mbta_lines.json?nocache=' + Date.now())
         .then(response => response.json())
         .then(data => {
             console.log("✅ Layer2 Loaded:", data);
