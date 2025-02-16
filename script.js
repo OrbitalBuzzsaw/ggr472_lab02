@@ -1,14 +1,3 @@
-mapboxgl.accessToken = 'pk.eyJ1IjoiYW9jaHJpc3Rlc2VuIiwiYSI6ImNtNzVzM3ozNzAxMzMycnB1Ymswd3pxdmgifQ.OXmeKBE7RZ3VT88AiV93Nw';
-
-const map = new mapboxgl.Map({
-    container: 'map', // HTML container ID
-    style: 'mapbox://styles/aochristesen/cm75sbdga00i401quarbffk7tL', // Mapbox Studio style URL
-    center: [-100, 40], // Initial centre 
-    zoom: 4
-});
-
-// zoom and rotation controls
-map.addControl(new mapboxgl.NavigationControl());
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYW9jaHJpc3Rlc2VuIiwiYSI6ImNtNzVzM3ozNzAxMzMycnB1Ymswd3pxdmgifQ.OXmeKBE7RZ3VT88AiV93Nw';
 
@@ -18,6 +7,8 @@ const map = new mapboxgl.Map({
     center: [-100, 40], // [longitude, latitude]
     zoom: 4
 });
+// zoom and rotation controls
+map.addControl(new mapboxgl.NavigationControl());
 
 map.on('load', function () {
     console.log("✅ Map has loaded successfully!");
